@@ -1,0 +1,29 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.cache
+.snakemake/
+.vscode
+output/
+/*.pdf
+data/Results_7_combined/**/*MSstats.csv
+data/uniprotkb_Human_2023_10_25.tsv.gz
+
+# azimuth snakemake files  
+# track only original files provided by satijalab/azimuth-references
+azimuth-references/*
+!azimuth-references/*/
+azimuth-references/*/*
+!azimuth-references/*/*/
+azimuth-references/*/*/*
+!azimuth-references/**/*.R
+!azimuth-references/**/*.py
+!azimuth-references/**/config.json
+!azimuth-references/**/Snakefile
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+[format]
+line-width = 100
+indent-width = 4
+indent-style = "tab"
+line-ending = "auto"
+persistent-line-breaks = true
+exclude = ["data/", "output/"]
+default-exclude = true
