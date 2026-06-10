@@ -1,8 +1,8 @@
 # ==============================================================================
-# Preprocessing for Stage 1 T1D Donors (1, 2, 3)
+# Preprocessing for mAAb+ Donors (1, 2, 3)
 # ==============================================================================
 # Script: 2a_1-process_msnsets_donors_1_2_3.R
-# Description: Preprocesses proteomics data for Stage 1 T1D donors 6450, 6521, and
+# Description: Preprocesses proteomics data for mAAb+ donors 6450, 6521, and
 #              6267 (donors 1, 2, and 3). Performs protein rollup, log2
 #              transformation, normalization, outlier removal, and tissue block
 #              batch effect correction. Generates QC plots including NA plots,
@@ -37,7 +37,7 @@ dir.create(
 	showWarnings = F
 )
 
-# Select Stage 1 T1D donors only (donor 3 in position 6)
+# Select mAAb+ donors only (donor 3 in position 6)
 msnsets <- msnsets[c(1, 2, 6)]
 
 donor <- 1

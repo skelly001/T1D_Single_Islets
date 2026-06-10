@@ -25,12 +25,12 @@ library(data.table)
 dir.create("output/RD1-raw_msnsets", recursive = TRUE, showWarnings = F)
 
 # Donor mapping (Data Package ID -> Patient ID):
-# MSnSet 1: pid = 6450, DP3802 (Stage 1 T1D)
-# MSnSet 2: pid = 6521, DP4030 (Stage 1 T1D)
+# MSnSet 1: pid = 6450, DP3802 (mAAb+)
+# MSnSet 2: pid = 6521, DP4030 (mAAb+)
 # MSnSet 3: pid = 6178, DP5312 (ND)
 # MSnSet 4: pid = 6440, DP5313 (ND)
 # MSnSet 5: pid = 6539, DP5314 (ND)
-# MSnSet 6: pid = 6267, DP5315 (Stage 1 T1D)
+# MSnSet 6: pid = 6267, DP5315 (mAAb+)
 
 pid <- c(
 	"3802" = "6450",

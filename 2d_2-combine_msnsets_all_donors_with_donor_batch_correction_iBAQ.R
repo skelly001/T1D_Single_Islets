@@ -3,7 +3,7 @@
 # ==============================================================================
 # Script: 2d_2-combine_msnsets_all_donors_with_donor_batch_correction_iBAQ.R
 # Description: Combines preprocessed iBAQ quantification data from all six donors
-#              (Stage 1 T1D and control) into a single MSnSet object with donor-level
+#              (mAAb+ and control) into a single MSnSet object with donor-level
 #              batch correction. Adds case/control status and class labels based
 #              on insulin (INS) and CD3 status.
 #

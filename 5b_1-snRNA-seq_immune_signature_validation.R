@@ -6,7 +6,7 @@
 #              published snRNA-seq data from recent-onset T1D patients
 #              (DOI:10.1126/sciadv.ady0080). Performs donor-level linear modeling
 #              with limma and generates heatmap comparing log fold-changes between
-#              proteomics (Stage 1 T1D) and reference transcriptomics (recent-onset T1D).
+#              proteomics (mAAb+) and reference transcriptomics (recent-onset T1D).
 #
 # Input: - output/RD4-islet_immune_response_signature/RD4b_1-immune_signature_feature_candidates.xlsx
 #        - data/Kyle_Gaulton_10.1126sciadv.ady0080_Beta_Cell_differentiations.xlsx
@@ -94,7 +94,7 @@ plot_data <- inner_join(iirs_lm_res_wide, ref_logfc, "gene_name") %>%
 col_pal <- circlize::colorRamp2(c(-4, 0, 4), c("blue", "white", "red"))
 
 # Column labels
-proteomics_label <- "Single-Islet\nProteomics\n(Stage 1 T1D)"
+proteomics_label <- "Single-Islet\nProteomics\n(mAAb+)"
 transcriptomics_label <- "snRNA-seq\n(Recent-onset T1D)"
 col_order <- factor(
 	c(rep(proteomics_label, 3), transcriptomics_label),

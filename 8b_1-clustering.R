@@ -2,7 +2,7 @@
 # WGCNA Co-Expression Network Clustering Analysis
 # ==============================================================================
 # Script: 8b_1-clustering.R
-# Description: Performs refined clustering analysis on Stage 1 T1D donors using
+# Description: Performs refined clustering analysis on mAAb+ donors using
 #              a Topological Overlap Matrix (TOM) of type signed Nowick 2 and
 #              hierarchical clustering. Tests multiple soft-thresholding powers
 #              and cluster numbers, validates clustering quality using GO enrichment
@@ -141,7 +141,7 @@ m <- readRDS("output/RD6-beta_cell_profile/RD6a_1-msnset_w_centroids.rds")
 
 dir.create("output/RD8-clustering")
 
-# Filter, impute, and subset to Stage 1 T1D donors
+# Filter, impute, and subset to mAAb+ donors
 m <- completeness_filt(m, 0.5)
 m <- impute_msnset(m)
 m <- m[, pData(m)$class == "case"]

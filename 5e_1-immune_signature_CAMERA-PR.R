@@ -7,7 +7,7 @@
 #              pathways and processes associated with immune signature variation.
 #              Applies gene set size filtering, Jaccard similarity clustering
 #              (cutoff: 2/3), and filters for significance (FDR < 0.05) in at least
-#              one Stage 1 T1D donor.
+#              one mAAb+ donor.
 #
 # Input: - output/RD5-islet_immune_response_signature_analysis/RD5c_1-immune_signature_limma_results.csv
 #        - data/GOBP_gene_sets.rds

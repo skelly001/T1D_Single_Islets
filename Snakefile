@@ -75,12 +75,22 @@ rule all:
 		"output/RD8-clustering/RD8b_1-cluster_membership.xlsx",
 		"output/RD8-clustering/RD8c_1-cluster_heatmaps.pdf",
 		"output/RD8-clustering/RD8c_1-LGALS3_LGALS3BP_heatmap.pdf",
+		"output/RD8-clustering/RD8d_1-basement_membrane_vs_BCP.png",
+		"output/RD8-clustering/RD8d_1-basement_membrane_vs_IIRS.png",
 		# Stage 10 - final QC
 		"output/RD10-misc/RD10a_1-INS_intensity_boxplot.png",
 		"output/RD10-misc/RD10a_1-GCG_intensity_boxplot.png",
 		"output/RD10-misc/RD10a_1-INS_vs_GCG_scatterplot.png",
 		"output/RD10-misc/RD10a_1-observed_proteins_QC_barplot.png",
-		"output/RD10-misc/RD10b_1-table_1_donor_information.png"
+		"output/RD10-misc/RD10b_1-table_1_donor_information.png",
+		# Stage 11 - protein-centroid linear modeling
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-ITIH5_vs_IIRS.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-HEXA_vs_IIRS.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-HEXB_vs_IIRS.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-FAP_vs_BCP.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-DPP4_vs_BCP.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-QSOX1_vs_BCP.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-FBLN7_vs_BCP.png"
 
 # ==============================================================================
 # Setup: Initialize renv environment
@@ -208,7 +218,7 @@ rule combine_msnsets_batch_correction_iBAQ:
 		"Rscript {input.script}"
 
 # ==============================================================================
-# Stage 3: WGCNA co-expression network analysis (one per Stage 1 T1D donor)
+# Stage 3: WGCNA co-expression network analysis (one per mAAb+ donor)
 # ==============================================================================
 
 rule wgcna_donor_6450:
@@ -493,6 +503,17 @@ rule cluster_heatmaps:
 	shell:
 		"Rscript {input.script}"
 
+rule basement_membrane_cluster:
+	input:
+		script = "8d_1-basement_membrane_cluster.R",
+		clustering = "output/RD8-clustering/RD8b_1-clustering_results.RData",
+		msnset = "output/RD6-beta_cell_profile/RD6a_1-msnset_w_centroids.rds"
+	output:
+		"output/RD8-clustering/RD8d_1-basement_membrane_vs_BCP.png",
+		"output/RD8-clustering/RD8d_1-basement_membrane_vs_IIRS.png"
+	shell:
+		"Rscript {input.script}"
+
 # ==============================================================================
 # Stage 9: Cell type marker quality control
 # ==============================================================================
@@ -523,5 +544,24 @@ rule table_1_donor_information:
 		data = "data/donor_table.xlsx"
 	output:
 		"output/RD10-misc/RD10b_1-table_1_donor_information.png"
+	shell:
+		"Rscript {input.script}"
+
+# ==============================================================================
+# Stage 11: Protein–centroid linear modeling
+# ==============================================================================
+
+rule protein_centroid_linear_modeling:
+	input:
+		script = "11a_1-protein_centroid_linear_modeling.R",
+		msnset = "output/RD6-beta_cell_profile/RD6a_1-msnset_w_centroids.rds"
+	output:
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-ITIH5_vs_IIRS.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-HEXA_vs_IIRS.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-HEXB_vs_IIRS.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-FAP_vs_BCP.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-DPP4_vs_BCP.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-QSOX1_vs_BCP.png",
+		"output/RD11-protein_centroid_linear_modeling/RD11a_1-FBLN7_vs_BCP.png"
 	shell:
 		"Rscript {input.script}"

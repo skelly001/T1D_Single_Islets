@@ -7,7 +7,7 @@
 #              pathways and processes associated with beta cell profile variation.
 #              Applies gene set size filtering, Jaccard similarity clustering
 #              (cutoff: 2/3), and filters for significance (FDR < 0.05) in at least
-#              one Stage 1 T1D donor.
+#              one mAAb+ donor.
 #
 # Input: - output/RD7-beta_cell_profile_analysis/RD7a_1-beta_cell_profile_limma_results.csv
 #        - data/GOBP_gene_sets.rds

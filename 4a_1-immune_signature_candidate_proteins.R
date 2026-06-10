@@ -4,7 +4,7 @@
 # Script: 4a_1-immune_signature_candidate_proteins.R
 # Description: Identifies candidate proteins for the Islet Immune Response
 #              Signature (IIRS) by extracting proteins from immune-related WGCNA
-#              modules across the three Stage 1 T1D donors. Consolidates module
+#              modules across the three mAAb+ donors. Consolidates module
 #              membership results and exports candidate proteins for further
 #              refinement.
 #

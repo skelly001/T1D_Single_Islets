@@ -1,9 +1,9 @@
 # ==============================================================================
-# WGCNA Network Analysis - Donor 6521 (Stage 1 T1D)
+# WGCNA Network Analysis - Donor 6521 (mAAb+)
 # ==============================================================================
 # Script: 3b_1-WGCNA_donor_6521.R
 # Description: Performs Weighted Gene Co-expression Network Analysis (WGCNA) on
-#              proteomics data from Stage 1 T1D donor 6521. Constructs protein
+#              proteomics data from mAAb+ donor 6521. Constructs protein
 #              co-expression networks, identifies modules using hierarchical
 #              clustering, merges similar modules, performs over-representation
 #              analysis (ORA) for GO biological processes, and correlates module

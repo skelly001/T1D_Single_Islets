@@ -124,8 +124,8 @@ res <- data.frame(
 	num_prot_75pct = NA
 ) %>%
 	mutate(
-		Class = if_else(Class == "Case", "Stage 1 T1D", "Non-diabetic"),
-		Class = factor(Class, levels = c("Stage 1 T1D", "Non-diabetic"))
+		Class = if_else(Class == "Case", "mAAb+", "Non-diabetic"),
+		Class = factor(Class, levels = c("mAAb+", "Non-diabetic"))
 	)
 
 

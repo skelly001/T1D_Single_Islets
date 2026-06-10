@@ -41,8 +41,8 @@ im_sig <- readRDS("output/RD4-islet_immune_response_signature/RD4b_1-immune_sign
 
 var_plot_data <- pData(m_imc)[, c("class", "donor", "im_sig_centroid")] %>%
 	mutate(
-		Class = if_else(class == "case", "Stage 1 T1D", "Non-Diabetic"),
-		Class = factor(Class, levels = c("Stage 1 T1D", "Non-Diabetic"))
+		Class = if_else(class == "case", "mAAb+", "Non-Diabetic"),
+		Class = factor(Class, levels = c("mAAb+", "Non-Diabetic"))
 	)
 
 var_plot <- ggplot(var_plot_data, aes(donor, im_sig_centroid, fill = Class)) +
@@ -63,54 +63,6 @@ ggsave(
 	width = 1.9,
 	height = 6.5,
 	units = "in",
-	dpi = 600
-)
-
-
-# STAT1-WARS1 Correlation Analysis --------------------------------------------
-
-# Helper function: generate correlation scatter plot for a donor
-make_cor_scatter <- function(m_subset, donor_id, title, label_y = NULL) {
-	STAT1 <- exprs(m_subset)[
-		fData(m_subset)$gene_name == "STAT1",
-		pData(m_subset)$donor == donor_id
-	]
-	WARS1 <- exprs(m_subset)[
-		fData(m_subset)$gene_name == "WARS1",
-		pData(m_subset)$donor == donor_id
-	]
-
-	ggplot(data.frame(STAT1, WARS1), aes(STAT1, WARS1)) +
-		geom_point(size = 0.7) +
-		geom_smooth(method = "lm") +
-		stat_cor(method = "pearson", label.y = label_y %||% waiver()) +
-		labs(x = "STAT1", y = "WARS1", title = title) +
-		theme_classic() +
-		grids(linetype = "dashed") +
-		theme(
-			plot.title = element_text(hjust = 0.5, size = 13),
-			axis.title = element_text(size = 13),
-			axis.text = element_text(size = 11)
-		)
-}
-
-m_im <- m[fData(m)$UniProtAcc %in% im_sig$UniProtAcc, ]
-
-p1 <- make_cor_scatter(m_subset = m_im, donor_id = 6521, title = "Stage 1 T1D\n6521")
-p2 <- make_cor_scatter(
-	m_subset = m_im,
-	donor_id = 6178,
-	title = "Non-diabetic\n6178",
-	label_y = 0.5
-)
-
-p3 <- p1 + p2
-
-ggsave(
-	filename = "output/RD5-islet_immune_response_signature_analysis/RD5g_1-IIRS_STAT1_WARS1_correlation_scatterplots.png",
-	plot = p3,
-	width = 8,
-	height = 4,
 	dpi = 600
 )
 
@@ -148,7 +100,7 @@ make_cor_heatmap <- function(donor_id, title, show_legend = FALSE) {
 		labs(fill = "Pearson\nCorrelation")
 }
 
-c1 <- make_cor_heatmap(donor_case, str_glue("Stage 1 T1D\n{donor_case}"))
+c1 <- make_cor_heatmap(donor_case, str_glue("mAAb+\n{donor_case}"))
 c2 <- make_cor_heatmap(donor_cont, str_glue("Non-Diabetic\n{donor_cont}"), show_legend = TRUE)
 
 c3 <- c1 + c2

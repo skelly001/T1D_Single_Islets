@@ -6,7 +6,7 @@
 #              Signature (IIRS) protein data to visualize trajectory patterns across
 #              single islets. Generates UMAP plots showing IIRS centroid values for
 #              all donors combined and separately by individual donor to reveal
-#              immune response progression patterns in Stage 1 T1D and control donors.
+#              immune response progression patterns in mAAb+ and control donors.
 #
 # Input: - output/RD2-preprocessing/RD2b-prepared_data/RD2b_2-msnset_all_donors_BC.rds
 #        - output/RD4-islet_immune_response_signature/RD4c_1-msnset_immune_sig_case_adjusted.rds
@@ -113,3 +113,25 @@ ggsave(
 	height = 4,
 	dpi = 600
 )
+
+# Overlay tissue section
+p_lobe <- pData(m_imc)[, c("sample_name", "Block")]
+
+rd2_plot <- rd2_plot %>%
+	left_join(p_lobe, by = c("rowname" = "sample_name")) %>%
+	mutate(lobe = str_extract(Block, "[[:alpha:]]{2}$"))
+
+p2 <- ggplot(rd2_plot, aes(UMAP1, UMAP2, color = lobe)) +
+	geom_point() +
+	facet_wrap("donor") +
+	labs(color = "IIRS") +
+	plot_theme
+p2
+
+# IIRS by tissue section boxplot
+im_df <- as.data.frame.MSnSet(m_imc) %>%
+	mutate(lobe = str_extract(Block, "[[:alpha:]]{2}$"))
+
+ggplot(im_df, aes(lobe, im_sig_centroid)) +
+	geom_boxplot() +
+	facet_wrap("donor")

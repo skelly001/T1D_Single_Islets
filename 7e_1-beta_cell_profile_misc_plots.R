@@ -4,7 +4,7 @@
 # Script: 7e_1-beta_cell_profile_misc_plots.R
 # Description: Generates supplementary visualization showing Beta Cell Profile
 #              (BCP) centroid distribution across donors and disease status. Creates
-#              boxplots stratified by donor and disease class (Stage 1 T1D vs
+#              boxplots stratified by donor and disease class (mAAb+ vs
 #              Non-Diabetic) to illustrate intra-donor variance in beta cell function.
 #
 # Input: - output/RD6-beta_cell_profile/RD6a_1-msnset_w_centroids.rds
@@ -33,8 +33,8 @@ m_bcp <- m[fData(m)$gene_name %in% bcp_proteins$gene_name, ]
 
 var_plot_data <- pData(m_bcp)[, c("class", "donor", "bcp_centroid")] %>%
 	mutate(
-		Class = if_else(class == "case", "Stage 1 T1D", "Non-Diabetic"),
-		Class = factor(Class, levels = c("Stage 1 T1D", "Non-Diabetic"))
+		Class = if_else(class == "case", "mAAb+", "Non-Diabetic"),
+		Class = factor(Class, levels = c("mAAb+", "Non-Diabetic"))
 	)
 
 var_plot <- ggplot(var_plot_data, aes(donor, bcp_centroid, fill = Class)) +

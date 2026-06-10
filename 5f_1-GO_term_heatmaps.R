@@ -7,7 +7,7 @@
 #              patterns. Creates four heatmaps for: (1) extracellular matrix
 #              organization, (2) hyaluronan metabolic process, (3) glycosaminoglycan
 #              catabolic process, and (4) interleukin-10 production. Features are
-#              selected based on significant differences between Stage 1 T1D and
+#              selected based on significant differences between mAAb+ and
 #              control donors (t-test p < 0.05).
 #
 # Input: - output/RD5-islet_immune_response_signature_analysis/RD5c_1-immune_signature_limma_results.csv

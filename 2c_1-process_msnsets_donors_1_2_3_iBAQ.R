@@ -1,9 +1,9 @@
 # ==============================================================================
-# Preprocessing for Stage 1 T1D Donors (1, 2, 3) - iBAQ Quantification
+# Preprocessing for mAAb+ Donors (1, 2, 3) - iBAQ Quantification
 # ==============================================================================
 # Script: 2c_1-process_msnsets_donors_1_2_3_iBAQ.R
 # Description: Preprocesses iBAQ (intensity-based absolute quantification) data
-#              for Stage 1 T1D donors 6450, 6521, and 6267. Calculates protein-level
+#              for mAAb+ donors 6450, 6521, and 6267. Calculates protein-level
 #              iBAQ values, performs log2 transformation, normalization, outlier
 #              removal, and tissue block batch effect correction.
 #
@@ -57,7 +57,7 @@ dir.create(
 	showWarnings = F
 )
 
-# Select Stage 1 T1D donors only (donor 3 in position 6)
+# Select mAAb+ donors only (donor 3 in position 6)
 msnsets <- msnsets[c(1, 2, 6)]
 
 donor <- 1

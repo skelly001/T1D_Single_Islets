@@ -2,7 +2,7 @@
 # Combine All Donor MSnSets Without Batch Correction
 # ==============================================================================
 # Script: 2b_1-combine_msnsets_all_donors.R
-# Description: Combines preprocessed proteomics data from all six donors (Stage 1 T1D
+# Description: Combines preprocessed proteomics data from all six donors (mAAb+
 #              and control) into a single MSnSet object. Adds case/control status
 #              and class labels based on insulin (INS) and CD3 status. Saves the
 #              combined dataset without donor-level batch correction.
